@@ -8,21 +8,22 @@ public class Solution {
     * Space:O(n)
     */
     public List<List<String>> groupAnagrams(String[] strs) {
-        HashMap<String, LinkedList<String>> map = new HashMap<>();
-        for (String s:strs) {
-            char[] chars = new char[26];
-            for (int i = 0, size = s.length(); i < size; i++) {
-                chars[s.charAt(i)-'a']++;
+        HashMap<String, List<String>> map = new HashMap<>();
+        List<List<String>> ret = new LinkedList<>();
+        for (String str:strs) {
+            char[] key = new char[26];
+            for (int i = 0, size = str.length(); i < size; i++ ){
+                key[str.charAt(i) - 'a']++;
             }
-            String key = new String(chars);
-            LinkedList<String> list = map.get(key);
+            String keyStr = new String(key);
+            List<String> list = map.get(keyStr);
             if (null == list) {
                 list = new LinkedList<>();
-                map.put(key, list);
+                map.put(keyStr, list);
+                ret.add(list);
             }
-            list.add(s);
+            list.add(str);
         }
-
-        return new ArrayList<>(map.values());
+        return ret;
     }
 }

@@ -1,5 +1,17 @@
 class Solution {
-    //TODO improve, O(N)?
+    
+    // O(N)
+    public boolean canJump(int[] nums) {
+        int maxPath = 0;
+        
+        for (int i=0; i<= maxPath && maxPath < nums.length; i++) {
+            maxPath = Math.max(nums[i] + i, maxPath);
+        }
+        
+        return maxPath >= nums.length-1? true: false;
+    }
+
+    //O(N^2)
     public boolean canJump(int[] nums) {
         int index = 0;
         while(index < nums.length-1 && nums[index] != 0 ) {

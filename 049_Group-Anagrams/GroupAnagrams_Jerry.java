@@ -29,11 +29,14 @@ public class Group_Anagrams_Jerry {
         }
 
         Map<String, List<String>> map = new HashMap<>();
-        for (String source: strs) {
-            char [] chars = source.toCharArray();
-            Arrays.sort(chars);
-            String key = String.valueOf(chars); // back to String
-
+        for (String source: strs) { //time: O(N)
+            // Using word index to insteading sort
+            char words [] = new char[26];
+            for (char c: source.toCharArray()) { //time: O(M)
+                words[c - 'a']++;
+            }
+            
+            String key = String.valueOf(words);
             if (!map.containsKey(key)) {
                 map.put(key, new ArrayList<String>());
             }

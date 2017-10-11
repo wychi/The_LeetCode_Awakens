@@ -19,10 +19,11 @@ class Solution {
 //Complexity: O(ln(ln(n))), for 32-bit: the while loop at most 5 times
                                 64-bit:                        6 times
     public static int lastRemaining(int n) {
-        /* base is power of 2 and the largest number which are not large than n,
-           ex/ if n == 0xd, base: 8,
-                  n == 0x10, base: 16
-           you can base by simply binary search. The following implementation is another bit-wise method
+        /* 'base' is power of 2 and the largest number which are not large than n,
+           ex/ if n == 0xd, 'base': 8,
+                  n == 0x10, 'base': 16
+           An easy way to get 'base' is by binary search. 
+           The following implementation provides another bit-wise method
          */
         int base = n;
         int d = 1;
@@ -31,8 +32,8 @@ class Solution {
             d <<= 1;
         }
         base -= base>>1;
-        //0x55555555 => extract even bits
-        //0xaaaaaaaa => extract odd bits
-        return 1+((base-1) & 0x55555555) + ((n-base) & 0xaaaaaaaa);
+        //((base-1) & 0x55555555) => set all the even bits smaller than base to 1
+        // (n-base) set the left most bit to 0
+        return 1 + ( ((base-1) & 0x55555555) | (n-base) );
     }
 }

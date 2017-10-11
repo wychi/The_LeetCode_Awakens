@@ -32,8 +32,8 @@ class Solution {
             d <<= 1;
         }
         base -= base>>1;
-        //((base-1) & 0x55555555) => set all the even bits smaller than base to 1
         // (n-base) set the left most bit to 0
-        return 1 + ( ((base-1) & 0x55555555) | (n-base) );
+        // ((base-1) & 0x55555555) => get a mask that set all the even bits smaller than 'base' to 1       
+        return 1 + ( (n-base) | ((base-1) & 0x55555555) );
     }
 }

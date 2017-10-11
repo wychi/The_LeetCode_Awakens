@@ -16,14 +16,14 @@ class Solution {
         return a0;
     }
     
-//Complexity: O(ln(ln(n))), for 32-bit: the while loop at most 5 times
-                                64-bit:                        6 times
+/*Complexity: O(ln(ln(n))), for 32-bit: the while loop at most 5 times
+                                64-bit:                        6 times*/
     public static int lastRemaining(int n) {
         /* 'base' is power of 2 and the largest number which are not large than n,
            ex/ if n == 0xd, 'base': 8,
                   n == 0x10, 'base': 16
            An easy way to get 'base' is by binary search. 
-           The following implementation provides another bit-wise method
+           The following implementation provides another bit-wise method, the concept is to set all the bits less than x to 1
          */
         int base = n;
         int d = 1;

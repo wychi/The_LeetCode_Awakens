@@ -15,24 +15,22 @@ class Solution {
         if (inorder.length != preorder.length) {
             return null;
         }
-        return getTreeNode(0, preorder.length, 0, inorder.length, preorder, inorder);
+        Map<Integer, Integer> inMap = new HashMap<>();
+        for (int i = 0; i< inorder.length; i++) {
+            inMap.put(inorder[i], i);
+        }
+        return getTreeNode(0, preorder.length, 0, inorder.length, preorder, inorder, inMap);
     }
     
-    private TreeNode getTreeNode(int preStart, int preEnd, int inStart, int inEnd, int[] preorder, int[] inorder) {
+    private TreeNode getTreeNode(int preStart, int preEnd, int inStart, int inEnd, int[] preorder, int[] inorder, Map<Integer, Integer> inMap) {
         TreeNode node = new TreeNode(preorder[preStart]);
-        int leftSize = 0;
-        for (int i = inStart; i < inEnd; i++) {
-            if (inorder[i] == preorder[preStart]) {
-                leftSize = i - inStart;
-                break;
-            }
-        }
+        int leftSize = inMap.get(preorder[preStart]) - inStart;
         int rightSize = preEnd - preStart - 1 - leftSize;
         if (leftSize > 0) {
-            node.left = getTreeNode(preStart + 1, preStart + 1 + leftSize, inStart, inStart + leftSize, preorder, inorder);
+            node.left = getTreeNode(preStart + 1, preStart + 1 + leftSize, inStart, inStart + leftSize, preorder, inorder, inMap);
         }
         if (rightSize > 0) {
-            node.right = getTreeNode(preStart + 1 + leftSize, preEnd, inStart + leftSize + 1, inEnd, preorder, inorder);
+            node.right = getTreeNode(preStart + 1 + leftSize, preEnd, inStart + leftSize + 1, inEnd, preorder, inorder, inMap);
         }
         return node;
     }

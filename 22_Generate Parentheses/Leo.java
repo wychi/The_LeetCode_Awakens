@@ -18,4 +18,35 @@ class Solution {
         generateParenthesis(ret, new char[n*2], 0, 0, 0);
         return ret;
     }
+    
+    public List<String> generateParenthesis(int n) {
+        n <<= 1;
+        LinkedList<String> ret = new LinkedList<>();
+        int left = 0, right = 0, idx = 0;
+        char[] paren = new char[n];
+        while (idx >= 0) {
+            if (left < paren.length/2) {
+                paren[idx++] = '(';
+                left++;
+            } else if (right < left) {
+                paren[idx++] = ')';
+                right++;
+            } else {
+                if (idx == n) ret.add(new String(paren));
+                while (--idx >= 0 ) {
+                    if (paren[idx] == ')') {
+                        right--;
+                    } else {
+                        left--;
+                        if (left > right) {
+                           right++;
+                           paren[idx++] = ')'; 
+                           break;
+                        }
+                    }
+                }
+            }
+        }
+        return ret;
+    }
 }

@@ -66,7 +66,40 @@ public class Solution {
                 ret.add(current);
             }
         }
+        return ret;
+    }
+}
+
+
+class Solution {
+    private void getSubsets(LinkedList<List<Integer>> ret, int[] nums, LinkedList<Integer> list, int idx) {
+        ret.add(new LinkedList<>(list));
+        for (int i = idx; i < nums.length; i++) {
+            list.add(nums[i]);
+            getSubsets(ret, nums, list, i+1);
+            list.removeLast();
+        }
         
+    }
+    public List<List<Integer>> subsets(int[] nums) {
+        LinkedList<List<Integer>> ret = new LinkedList<>();
+        getSubsets(ret, nums, new LinkedList<>(), 0);
+        return ret;
+    }
+}
+
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        LinkedList<List<Integer>> ret = new LinkedList<>();
+        int size = nums.length;
+        int subsetsSize = 1<<size;
+        for (int i = 0; i < subsetsSize ; i ++) {
+            LinkedList<Integer> list = new LinkedList<>();
+            for (int j = 0, mask = 1; j < size && mask <= i; j++, mask <<=1) {
+                if ((mask & i) != 0) list.add(nums[j]);
+            }
+            ret.add(list);
+        }
         return ret;
     }
 }

@@ -11,13 +11,13 @@ class Solution {
     //Key:
     //1. Sort by start
     //
-    //Time:O(N)
+    //Time:O(N logN)
     //Space:O(N)
     public List<Interval> merge(List<Interval> intervals) {
         if (null == intervals || intervals.size() <= 1) {
             return intervals;
         }
-        //Time: O(N)
+        //Time: O(N logN)
         Comparator<Interval> comparator = new Comparator<Interval>() {
             @Override
             public int compare(Interval i1, Interval i2) {

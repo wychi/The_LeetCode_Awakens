@@ -76,8 +76,10 @@ PriorityQueue<Integer> pq = new PriorityQueue<>(SIZE, new Comparator() {
 
 # Algorithm
 * [Sort](./Sort.md)
-    * [QuickSort](./QuickSort.java), [MergeSort](./MergeSort.java), [TreeTraversal]
-    * Find kth element: ex: median of two sorted arrays, find...
+    * Comparison-based : [QuickSort](./QuickSort.java), [MergeSort](./MergeSort.java), [TreeTraversal](./TreeTraversal.java)
+    * Non-comparison   : BucketSort / RadixSort / ...
+    * QuickSelect : 每一次都可以找到pivot的正確位置
+    * Find kth element: ex: median of two sorted arrays, find...
 * [Dynamic Programming](./DP.md)  
 一句话理解动态规划，则是枚举所有状态，然后剪枝，寻找最优状态，同时将每一次求解子问题的结果保存在一张“表格”中，以后再遇到重叠的子问题，从表格中保存的状态中查找（俗称记忆化搜索）
     * 动态规划是“最优独立重叠子结构+全局最优”

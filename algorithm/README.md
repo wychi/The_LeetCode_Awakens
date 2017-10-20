@@ -70,12 +70,13 @@ PriorityQueue<Integer> pq = new PriorityQueue<>(SIZE, new Comparator() {
         * 找出所有合理的排列順序: BackTracing
         * 計算所有合理的排列順序個數: DP
     * Lowest Common Ancestor
-    * Disjoint Sets / Union-find algorithm
+* Disjoint Sets / Union-find algorithm
 * [Trie树（字典树）](https://leetcode.com/problems/implement-trie-prefix-tree/)
 
 
 # Algorithm
 * [Sort](./Sort.md)
+    * [QuickSort](./QuickSort.java), [MergeSort](./MergeSort.java), [TreeTraversal]
     * Find kth element: ex: median of two sorted arrays, find...
 * [Dynamic Programming](./DP.md)  
 一句话理解动态规划，则是枚举所有状态，然后剪枝，寻找最优状态，同时将每一次求解子问题的结果保存在一张“表格”中，以后再遇到重叠的子问题，从表格中保存的状态中查找（俗称记忆化搜索）

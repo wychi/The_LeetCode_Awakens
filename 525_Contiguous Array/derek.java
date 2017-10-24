@@ -1,6 +1,6 @@
 class Solution {
     //Time:  O(N)
-    //Space: O(N)
+    //Space: O(1)
     public int findMaxLength(int[] nums) {
         final int size = null != nums ? nums.length : 0;
         if (size <= 0) return 0;

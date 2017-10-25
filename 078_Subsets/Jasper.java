@@ -9,7 +9,7 @@ class Solution {
         result.add(new ArrayList<>(tmp));
         for (int i = index; i < nums.length; i++) {
             tmp.add(nums[i]);
-            dfs(result, nums, tmp, i + 1);
+            backtrack(result, nums, tmp, i + 1);
             tmp.remove(tmp.size() - 1);
         }
     }

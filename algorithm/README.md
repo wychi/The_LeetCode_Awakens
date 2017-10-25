@@ -70,7 +70,7 @@ PriorityQueue<Integer> pq = new PriorityQueue<>(SIZE, new Comparator() {
         * 找出所有合理的排列順序: BackTracing
         * 計算所有合理的排列順序個數: DP
     * Lowest Common Ancestor
-* Disjoint Sets / Union-find algorithm
+* Disjoint Sets / [Union-find](./UnionFind.md) algorithm
 * [Trie树（字典树）](https://leetcode.com/problems/implement-trie-prefix-tree/)
 
 

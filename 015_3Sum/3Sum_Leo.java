@@ -1,33 +1,22 @@
 public class Solution {
-  public List<List<Integer>> threeSum(int[] nums) {
-    List<List<Integer>> ret = new LinkedList<>();
-    if (nums.length < 3) return ret;
-    Arrays.sort(nums);
-    int prev = - nums[0] - 1;
-    for (int i = 0, lastMid = nums.length - 2, last = lastMid+1; i <= lastMid; i++) {
-      int mid = i+1;
-      int end = last;
-      int target = -nums[i];
-      if (prev == target) continue;
-      while (mid < end) {
-        int value = nums[end] + nums[mid];
-        if (value > target) {
-          end--;
-        } else if (value < target) {
-          mid++;
-        } else {
-          ArrayList<Integer> list = new ArrayList<>(3);
-          list.add(nums[i]);
-          list.add(nums[mid]);
-          list.add(nums[end]);
-          ret.add(list);
-          do {mid++;} while (mid < end && nums[mid] == nums[mid-1]);
-          do {end--;} while (mid < end && nums[end] == nums[end+1]);
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        LinkedList<List<Integer>> ret = new LinkedList<>();
+        for (int i = 0, last = nums.length - 1; i <= last; i++) {
+            if (i > 0 && nums[i-1] == nums[i]) continue;
+            int l = i + 1, h = last;
+            while (l < h) {
+                int v = nums[l] + nums[h] + nums[i];
+                if (v > 0) {
+                    h--;
+                } else if (v < 0) {
+                    l++;
+                } else {
+                    ret.add(Arrays.asList(nums[i], nums[l], nums[h]));
+                    while (l < h && nums[--h] == nums[h+1]);
+                }
+            }
         }
-      }
-      prev = target;
+        return ret;
     }
-    
-    return ret;
-  }
 }

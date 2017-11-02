@@ -1,12 +1,13 @@
 public class Solution {
-  public void moveZeroes(int[] nums) {
-    int nextPlace = 0;
-    int size = nums.length;
-    for (int i = 0; i < size; i++) {
-      if (nums[i] != 0) nums[nextPlace++] = nums[i];
+    public void moveZeroes(int[] nums) {
+        for (int i = 0, write = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                if (write != i) {
+                    nums[write] = nums[i];
+                    nums[i] = 0;    
+                }
+                write++;
+            }
+        }  
     }
-    for (int i = nextPlace; i < size; i++) {
-      nums[i] = 0;
-    }
-  }
 }

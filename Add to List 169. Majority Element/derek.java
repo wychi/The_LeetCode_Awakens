@@ -17,4 +17,19 @@ class Solution {
         
         return nums[idx];
     }
+
+    //Method 2 :
+    // Moore voting algorithm
+public int majorityElement3(int[] nums) {
+    int count=0, ret = 0;
+    for (int num: nums) {
+        if (count==0)
+            ret = num;
+        if (num!=ret)
+            count--;
+        else
+            count++;
+    }
+    return ret;
+}
 }

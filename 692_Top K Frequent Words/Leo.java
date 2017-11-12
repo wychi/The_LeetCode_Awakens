@@ -17,7 +17,7 @@ class Solution {
             if (count++ >= k) pq.poll();
         }
         LinkedList<String> ret = new LinkedList<>();
-        while (!pq.isEmpty()) {
+        while (K-- > 0) {
             ret.addFirst(pq.poll().getKey());
         }
         return ret;                           

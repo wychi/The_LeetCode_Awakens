@@ -1,3 +1,19 @@
+//Keep gap between slow and fast pointer
+public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0);
+        ListNode slow = dummy, fast = dummy;
+        slow.next = head;
+        while (fast.next != null) {
+            if (n<=0) 
+                slow = slow.next;
+            fast = fast.next;
+            n--;
+        }
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
+
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {

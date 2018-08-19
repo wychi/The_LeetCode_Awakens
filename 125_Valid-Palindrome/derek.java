@@ -1,4 +1,27 @@
 class Solution {
+    public boolean isPalindrome(String s) {
+        final int len = null != s ? s.length() : 0;
+        if (len <=0) return true;
+        s = s.toLowerCase();
+        int head = 0, tail = len-1;
+        while (head <= tail) {
+            while (head <= tail && !Character.isLetterOrDigit(s.charAt(head))) {
+                head++;
+            }
+            while (head <= tail && !Character.isLetterOrDigit(s.charAt(tail))) {
+                tail--;
+            }
+            if (head<=tail && s.charAt(head) != s.charAt(tail)) {
+                return false;
+            }
+            head++;
+            tail--;
+        }
+        return true;
+    }
+}
+
+class Solution {
     //Key:
     //1. Remove other character (not 0-9, a-z, A-Z)  , API:
     //

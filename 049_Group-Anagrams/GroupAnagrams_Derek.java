@@ -37,7 +37,7 @@ public class Solution {
 
 class Solution {
     //Time: O(M*N) //string's length
-    //Space:O(M)
+    //Space:O(MN)
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> result = new HashMap<String, List<String>>();
         if (null == strs || strs.length <= 0) {

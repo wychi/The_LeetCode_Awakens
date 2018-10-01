@@ -8,6 +8,26 @@
  * }
  */
 class Solution {
+	//Method 1: better
+	public List<Interval> merge(List<Interval> intervals) {
+        Collections.sort(intervals, new Comparator<Interval>() {
+            @Override
+            public int compare(Interval v1, Interval v2) {
+                return Integer.compare(v1.start, v2.start);
+            }
+        });
+        LinkedList<Interval> result = new LinkedList<>();
+        for (Interval interval: intervals) {
+            if (result.isEmpty() || result.getLast().end < interval.start) {
+                result.add(interval);
+            } else {
+                result.getLast().end = Math.max(result.getLast().end, interval.end);
+            }
+        }
+
+        return result;
+    }
+
     //Key:
     //1. Sort by start
     //

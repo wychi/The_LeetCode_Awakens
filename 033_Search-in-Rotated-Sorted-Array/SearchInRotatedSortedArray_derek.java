@@ -7,7 +7,48 @@
  * Space:O(1)
  */
 public class Solution {
-    
+class Solution {
+    // public int search(int[] nums, int target) {
+    //     int lo = 0, hi = nums.length - 1;
+    //     while (lo <= hi) {
+    //         int mid = lo + (hi - lo) / 2;
+    //         int num = (nums[mid] < nums[0]) == (target < nums[0])
+    //             ? nums[mid]
+    //             : target < nums[0] ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+    //         if (num > target) {
+    //             hi = mid - 1;
+    //         } else if (num < target) {
+    //             lo = mid + 1;
+    //         } else {
+    //             return mid;
+    //         }
+    //     }
+    //     return -1;
+    // }
+    public int search(int[] nums, int target) {
+        int lo = 0, hi = nums.length-1;
+        while (lo <= hi) {
+            int mid = lo + (hi-lo) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] <= nums[hi]) { // right side
+                if (target > nums[mid] && target <= nums[hi]) { //target is between mid ~ end
+                    lo = mid+1;
+                } else {
+                    hi = mid-1;
+                }
+            } else {
+                if (target >= nums[lo] && target < nums[mid]) {
+                    hi = mid-1;
+                } else {
+                    lo = mid+1;
+                }
+            }
+        }
+        return -1;
+    }
+}
+
     /**
      * Solution:Binary Search v2
      * Time: O(log n)

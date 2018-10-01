@@ -1,4 +1,53 @@
 class Solution {
+
+	//Beats 99%
+	class Solution {
+    private static final String[] MAP = new String[]{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+    public List<String> letterCombinations(String digits) {
+        ArrayList<String> result = new ArrayList<>();
+        if (null == digits || digits.length() <= 0) return result;
+        helper(result, digits, "", 0);
+        return result;
+    }
+
+    private void helper(List<String> result, String digits, String substring, int start) {
+        if (substring.length() == digits.length()) {
+            result.add(String.valueOf(substring));
+            return;
+        }
+        String temp = MAP[digits.charAt(start)-'0'];
+        for (int i = 0 ; i<temp.length(); i++) {
+            helper(result, digits, substring+temp.charAt(i), start+1);
+        }
+    }
+}
+
+	//Bad performace!!
+	class Solution {
+    public List<String> letterCombinations(String digits) {
+        String[] map = new String[]{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        LinkedList<String> result = new LinkedList<String>();
+        if (null == digits || digits.length() <= 0)
+            return result;
+
+        List<String> base = new ArrayList<>();
+        for (int i = 0 ; i<digits.length() ; i++) {
+            base.add(map[digits.charAt(i)-'0']);
+        }
+
+        result.add("");
+        for (String s : base) {
+            for (int i = 0, size=result.size() ; i<size; i++) {
+                String b = result.removeFirst();
+                for (char c: s.toCharArray()) {
+                    result.add(b+c);
+                }
+            }
+        }
+        return result;
+    }
+}
     //Pass, but performance is bad !!!
     // public List<String> letterCombinations(String digits) {
     //     final int len = null != digits ? digits.length() : 0;

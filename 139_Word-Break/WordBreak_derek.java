@@ -1,4 +1,26 @@
 class Solution {
+	class Solution {
+		//Time:O(N^2)
+		//Queue:O(N)
+    //BFS
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[s.length()];
+        queue.offer(0);
+        while (!queue.isEmpty()) {
+            int start = queue.poll();
+            if (visited[start]) continue;
+            visited[start] = true;
+            for (int end = start+1; end<=s.length(); end++) {
+                if (wordDict.contains(s.substring(start, end))) {
+                    queue.offer(end);
+                    if (end == s.length()) return true;
+                }
+            }
+        }
+        return false;
+    }
+}
     // Key:
     // Solution: DP
     // Time: O(N^2)
@@ -16,12 +38,12 @@ class Solution {
         
         boolean[] result = new boolean[s.length()+1];
         result[0] = true;
-        int tempIdx = 0;
+        int lastIdx = 0;
         for (int i = 1; i<= s.length() ; i++) {
-            for (int j = tempIdx; j<i; j++) {
+            for (int j = lastIdx; j<i; j++) {
                 if (result[j] && wordDict.contains(s.substring(j, i))) {
                     result[i] = true;
-                    tempIdx = i;
+                    lastIdx = i;
                     break;
                 }
             }
